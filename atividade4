@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class ChecagemNumero {
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        
+        System.out.print("Digite um número: ");
+        String entrada = teclado.nextLine().replace(" ", "");
+        
+        if (verificaNumero(entrada)) {
+            System.out.println("Número correto!");
+        } else {
+            System.out.println("Número errado!");
+        }
+        
+        teclado.close();
+    }
+
+    public static boolean verificaNumero(String entrada) {
+        if (entrada.length() <= 1 || !entrada.matches("\\d+")) {
+            return false;
+        }
+        
+        int total = 0;
+        boolean alternar = false;
+        
+        for (int x = entrada.length() - 1; x >= 0; x--) {
+            int valor = Character.getNumericValue(entrada.charAt(x));
+            
+            if (alternar) {
+                valor *= 2;
+                if (valor > 9) {
+                    valor -= 9;
+                }
+            }
+            
+            total += valor;
+            alternar = !alternar;
+        }
+        
+        return total % 10 == 0;
+    }
+}
