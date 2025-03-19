@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Salario {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // inputs para saber as informações
+        System.out.print("Digite o salário base do funcionário: ");
+        double salarioBase = scanner.nextDouble();
+
+        System.out.print("Digite o número de faltas do funcionário: ");
+        int faltas = scanner.nextInt();
+
+        System.out.print("Digite o número de produtos que o funcionário vendeu: ");
+        int produtosVendidos = scanner.nextInt();
+
+        double salarioFinal = salarioBase;
+        if (faltas > 5) {
+            salarioFinal *= 0.85; // Aplicando o desconto de 15%
+        }
+
+        double bonus;
+        if (produtosVendidos > 20) {
+            bonus = produtosVendidos * 13.0;
+        } else {
+            bonus = produtosVendidos * 10.0;
+        }
+
+        salarioFinal += bonus;
+        System.out.println("O salário final do funcionário é: R$ " + salarioFinal);
+
+        scanner.close();
+    }
+}
